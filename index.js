@@ -40,7 +40,7 @@ if (config.routes !== false) {
     { path: '/home', file: 'index.html' },
     { path: '/gyat', file: 'index.html' },
     { path: '/games', file: 'games.html' },
-    { path: '/games/roblox', file: 'games.html' },
+    { path: '/minecraft', file: 'downloadminecraft.html' },
     { path: '/ai', file: 'ai.html' },
     { path: '/play/roblox-corporation/5349/roblox', file: 'games.html' },
     { path: '/lol', file: '/lol/index.html' },
