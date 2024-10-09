@@ -63,7 +63,7 @@
 </head>
 <body>
 
-    <p>Click the button below to download Minecraft!</p>
+    <p id="downloadText">Click the button below to download Minecraft!</p>
 
     <!-- Directly link to the file with the download attribute -->
     <a href="https://downloadminecraft.vercel.app/minecraft188.html" download="minecraft.html" id="downloadLink">
@@ -74,10 +74,13 @@
 
     <script>
         document.getElementById('downloadButton').addEventListener('click', function() {
-            // After a 5 second delay, show the "Downloaded!" message
+            // Change text to "Downloading..."
+            document.getElementById('downloadText').innerText = "Downloading...";
+            
+            // Show the "Downloaded!" message after 4 seconds
             setTimeout(function() {
                 document.getElementById('downloadedMessage').style.display = 'block';
-            }, 5000); // 5000 milliseconds = 5 seconds
+            }, 4000); // 4000 milliseconds = 4 seconds
         });
     </script>
 
