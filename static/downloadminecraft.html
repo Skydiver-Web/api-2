@@ -3,17 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auto Download Eaglercraft</title>
-    <script>
-        window.onload = function() {
-            const link = document.createElement('a');
-            link.href = 'https://raw.githubusercontent.com/vidio-boy/Eaglercraft1.8.8/main/eaglercraft.1.8.8.html';
-            link.download = 'eaglercraft.1.8.8.html';
-            link.click();
-        }
-    </script>
+    <title>Download Eaglercraft</title>
 </head>
 <body>
-    <p>Downloading Eaglercraft 1.8.8...</p>
+
+    <h1>Download Eaglercraft 1.8.8 HTML File</h1>
+    <p>Click the button below to download the HTML file.</p>
+
+    <!-- Button to trigger the download -->
+    <button onclick="downloadFile()">Download Eaglercraft 1.8.8 HTML</button>
+
+    <script>
+        function downloadFile() {
+            const link = document.createElement('a');
+            link.href = 'https://yourwebsite.com/files/eaglercraft.1.8.8.html';  // Replace with the URL to the uploaded file
+            link.download = 'eaglercraft.1.8.8.html';  // Suggested file name for download
+            link.click();  // Simulate the click to trigger download
+        }
+    </script>
+
 </body>
 </html>
