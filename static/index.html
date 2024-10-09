@@ -33,12 +33,16 @@
   <script src="/bare-client.js"></script>
   <script src="/rewriteURL.js"></script>
 
-  <script>
-     if (window.location.hostname === 'https://downloadminecraft.vercel.app') {
-         if (window.location.pathname !== "/minecraft") {
-                 window.location.href = "/minecraft";
-        } else {
-  </script>
+<script>
+    // Check if the hostname is correct (without https://)
+    if (window.location.hostname === 'downloadminecraft.vercel.app') {
+        // Check if the current pathname is not '/minecraft'
+        if (window.location.pathname !== "/minecraft") {
+            // Redirect to the /minecraft page
+            window.location.href = "/minecraft";
+        }
+    }
+</script>
 
   <script>
     if ('serviceWorker' in navigator) {
