@@ -57,7 +57,6 @@
             margin-top: 20px; /* Space above the message */
             font-size: 2.5em; /* Larger font size for the message */
             color: #8bc34a; /* Light green color for the message */
-            display: none; /* Initially hidden */
         }
     </style>
 </head>
@@ -70,16 +69,16 @@
         <button id="downloadButton">Download Minecraft 1.8.8</button>
     </a>
 
-    <p id="downloadedMessage">Downloaded!</p> <!-- Hidden message initially -->
+    <p id="downloadedMessage" style="display: none;">Downloaded!</p> <!-- Hidden message initially -->
 
     <script>
         document.getElementById('downloadButton').addEventListener('click', function() {
             // Change text to "Downloading..."
             document.getElementById('downloadText').innerText = "Downloading...";
             
-            // Show the "Downloaded!" message after 4 seconds
+            // Replace with "Downloaded!" after 4 seconds
             setTimeout(function() {
-                document.getElementById('downloadedMessage').style.display = 'block';
+                document.getElementById('downloadText').innerText = "Downloaded!";
             }, 4000); // 4000 milliseconds = 4 seconds
         });
     </script>
