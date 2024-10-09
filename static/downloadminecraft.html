@@ -51,6 +51,14 @@
         a {
             text-decoration: none; /* Remove underline from link */
         }
+
+        /* Download message styling */
+        #downloadedMessage {
+            margin-top: 20px; /* Space above the message */
+            font-size: 2.5em; /* Larger font size for the message */
+            color: #8bc34a; /* Light green color for the message */
+            display: none; /* Initially hidden */
+        }
     </style>
 </head>
 <body>
@@ -58,9 +66,20 @@
     <p>Click the button below to download Minecraft!</p>
 
     <!-- Directly link to the file with the download attribute -->
-    <a href="https://downloadminecraft.vercel.app/minecraft188.html" download="eaglercraft.1.8.8.html">
-        <button>Download Minecraft 1.8.8</button>
+    <a href="https://downloadminecraft.vercel.app/minecraft188.html" download="minecraft.html" id="downloadLink">
+        <button id="downloadButton">Download Minecraft 1.8.8</button>
     </a>
+
+    <p id="downloadedMessage">Downloaded!</p> <!-- Hidden message initially -->
+
+    <script>
+        document.getElementById('downloadButton').addEventListener('click', function() {
+            // After a 5 second delay, show the "Downloaded!" message
+            setTimeout(function() {
+                document.getElementById('downloadedMessage').style.display = 'block';
+            }, 5000); // 5000 milliseconds = 5 seconds
+        });
+    </script>
 
 </body>
 </html>
