@@ -64,24 +64,47 @@
 
     <p id="downloadText">Click the button below to download Minecraft!</p>
 
-    <!-- Directly link to the file with the download attribute -->
-    <a href="https://downloadminecraft.vercel.app/minecraft188.html" download="minecraft.html" id="downloadLink">
-        <button id="downloadButton">Download Minecraft 1.8.8</button>
-    </a>
+    <button id="downloadButton">Download Minecraft</button>
 
     <p id="downloadedMessage" style="display: none;">Downloaded!</p> <!-- Hidden message initially -->
 
     <script>
         document.getElementById('downloadButton').addEventListener('click', function() {
+            // Prompt the user for their choice
+            const version = prompt("Which version would you like to download?\n1. Minecraft 1.5.2 (Singleplayer and Multiplayer)\n2. Minecraft 1.8.8 (Multiplayer only)");
+
+            let downloadLink;
+
+            // Determine the download link based on the user's choice
+            if (version === '1' || version.toLowerCase() === 'minecraft 1.5.2') {
+                downloadLink = "https://downloadminecraft.vercel.app/minecraft152.html"; // Link for 1.5.2
+            } else if (version === '2' || version.toLowerCase() === 'minecraft 1.8.8') {
+                downloadLink = "https://downloadminecraft.vercel.app/minecraft188.html"; // Link for 1.8.8
+            } else {
+                alert("Invalid choice! Please choose either 1 or 2.");
+                return; // Exit if the choice is invalid
+            }
+
             // Change text to "Downloading..."
             document.getElementById('downloadText').innerText = "Downloading...";
-            
-            // Replace with "Downloaded!" after 4 seconds
+
+            // Start the download after a slight delay
             setTimeout(function() {
-                document.getElementById('downloadText').innerText = "Downloaded!";
-            }, 4000); // 4000 milliseconds = 4 seconds
+                const a = document.createElement('a');
+                a.href = downloadLink;
+                a.download = "minecraft.html"; // Change the name of the downloaded file if necessary
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                
+                // Replace with "Downloaded!" after 4 seconds
+                setTimeout(function() {
+                    document.getElementById('downloadText').innerText = "Downloaded!";
+                }, 4000); // 4000 milliseconds = 4 seconds
+            }, 1000); // 1 second delay before starting the download
         });
     </script>
 
 </body>
 </html>
+
