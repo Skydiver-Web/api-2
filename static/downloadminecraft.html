@@ -47,9 +47,25 @@
             background-color: #666; /* Change background on hover */
         }
 
-        /* Link styling */
-        a {
-            text-decoration: none; /* Remove underline from link */
+        /* Modal styling */
+        #modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            background-color: rgba(0, 0, 0, 0.5); /* Black background with transparency */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+        }
+
+        #modalContent {
+            background-color: #333; /* Darker background for modal */
+            padding: 20px;
+            border-radius: 10px; /* Rounded corners */
+            text-align: center; /* Center text */
         }
 
         /* Download message styling */
@@ -66,45 +82,64 @@
 
     <button id="downloadButton">Download Minecraft</button>
 
+    <div id="modal">
+        <div id="modalContent">
+            <h2>Select Version</h2>
+            <p>Which version would you like to download?</p>
+            <button class="versionButton" data-version="1.5.2">Minecraft 1.5.2 (Singleplayer and Multiplayer)</button>
+            <button class="versionButton" data-version="1.8.8">Minecraft 1.8.8 (Multiplayer only)</button>
+            <button id="closeModal">Cancel</button>
+        </div>
+    </div>
+
     <p id="downloadedMessage" style="display: none;">Downloaded!</p> <!-- Hidden message initially -->
 
     <script>
         document.getElementById('downloadButton').addEventListener('click', function() {
-            // Prompt the user for their choice
-            const version = prompt("Which version would you like to download?\n1. Minecraft 1.5.2 (Singleplayer and Multiplayer)\n2. Minecraft 1.8.8 (Multiplayer only)");
+            // Show the modal
+            document.getElementById('modal').style.display = 'flex';
+        });
 
-            let downloadLink;
+        document.querySelectorAll('.versionButton').forEach(button => {
+            button.addEventListener('click', function() {
+                const version = this.getAttribute('data-version');
+                let downloadLink;
 
-            // Determine the download link based on the user's choice
-            if (version === '1' || version.toLowerCase() === 'minecraft 1.5.2') {
-                downloadLink = "https://downloadminecraft.vercel.app/minecraft152.html"; // Link for 1.5.2
-            } else if (version === '2' || version.toLowerCase() === 'minecraft 1.8.8') {
-                downloadLink = "https://downloadminecraft.vercel.app/minecraft188.html"; // Link for 1.8.8
-            } else {
-                alert("Invalid choice! Please choose either 1 or 2.");
-                return; // Exit if the choice is invalid
-            }
+                // Determine the download link based on the user's choice
+                if (version === '1.5.2') {
+                    downloadLink = "https://downloadminecraft.vercel.app/minecraft152.html"; // Link for 1.5.2
+                } else if (version === '1.8.8') {
+                    downloadLink = "https://downloadminecraft.vercel.app/minecraft188.html"; // Link for 1.8.8
+                }
 
-            // Change text to "Downloading..."
-            document.getElementById('downloadText').innerText = "Downloading...";
+                // Change text to "Downloading..."
+                document.getElementById('downloadText').innerText = "Downloading...";
 
-            // Start the download after a slight delay
-            setTimeout(function() {
-                const a = document.createElement('a');
-                a.href = downloadLink;
-                a.download = "minecraft.html"; // Change the name of the downloaded file if necessary
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                
-                // Replace with "Downloaded!" after 4 seconds
+                // Start the download after a slight delay
                 setTimeout(function() {
-                    document.getElementById('downloadText').innerText = "Downloaded!";
-                }, 4000); // 4000 milliseconds = 4 seconds
-            }, 1000); // 1 second delay before starting the download
+                    const a = document.createElement('a');
+                    a.href = downloadLink;
+                    a.download = "minecraft.html"; // Change the name of the downloaded file if necessary
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    
+                    // Replace with "Downloaded!" after 4 seconds
+                    setTimeout(function() {
+                        document.getElementById('downloadText').innerText = "Downloaded!";
+                    }, 4000); // 4000 milliseconds = 4 seconds
+                }, 1000); // 1 second delay before starting the download
+
+                // Close the modal
+                document.getElementById('modal').style.display = 'none';
+            });
+        });
+
+        document.getElementById('closeModal').addEventListener('click', function() {
+            // Close the modal
+            document.getElementById('modal').style.display = 'none';
         });
     </script>
 
 </body>
 </html>
-
